@@ -18,7 +18,7 @@ name_validator = RegexValidator (
 )
     
 class User(AbstractUser):
-    user_id=models.CharField(max_length=8,primary_key=True,
+    user_id_id=models.CharField(max_length=8,primary_key=True,
                              unique=True,editable=False)
     first_name=models.CharField(max_length=100,validators=[name_validator])
     last_name=models.CharField(max_length=100,validators=[name_validator])
@@ -33,11 +33,11 @@ class User(AbstractUser):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     def save(self,*args,**kwargs):
-        if not self.user_id:
+        if not self.user_id_id:
             new_id=generate_userid()
-            while User.objects.filter(user_id=new_id).exists():
+            while User.objects.filter(user_id_id=new_id).exists():
                 new_id=generate_userid()
-            self.user_id=new_id
+            self.user_id_id=new_id
         super().save(*args,**kwargs)
         
    # submissions=models.ManyToManyField("ConferenceApp.Conference", through="Submission")

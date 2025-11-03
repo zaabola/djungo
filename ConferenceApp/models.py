@@ -9,7 +9,7 @@ class Conference(models.Model):
         MinLengthValidator(limit_value=30,
                            message="la description doit contenir au minimum 30 caractéres")
     ])
-    location=models.CharField(max_length=255)
+    localisation=models.CharField(max_length=255)
     THEME= [
         ("CS&IA","Computer science & IA"),
         ("CS","Social science"),

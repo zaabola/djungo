@@ -14,9 +14,9 @@ class SubmissionInline(admin.StackedInline):
 
 @admin.register(Conference)
 class AdminPerso(admin.ModelAdmin):
-    list_display =("name","theme","location","start_date","end_date","duration")
+    list_display =("name","theme","localisation","start_date","end_date","duration")
     ordering= ("start_date",)
-    list_filter =("theme","location","end_date")
+    list_filter =("theme","localisation","end_date")
     search_fields =("name",)
     fieldsets = (
             ("Information General",{
@@ -24,7 +24,7 @@ class AdminPerso(admin.ModelAdmin):
             }),
 
             ("Logistics" , {
-                "fields": ("location","start_date","end_date")
+                "fields": ("localisation","start_date","end_date")
             }),
     )
     readonly_fields= ("conference_id",)

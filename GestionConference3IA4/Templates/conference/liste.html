@@ -2,16 +2,16 @@
 <table border="1">
     <tr>
         <td>title </td>
-        <td>location </td>
+        <td>localisation </td>
         <td>Actions</td>
     </tr>
 {% for c in liste  %}
     <tr>
         <td>{{c.name}}</td>
-        <td>{{c.location}}</td>
+        <td>{{c.localisation}}</td>
         <td>
-            <a href="{%  url 'conference_detail' c.pk %}">détails</a>
-
+            <a href="{%  url 'conference_detail' c.pk %}">détails</a> <br>
+            <a href="{%  url 'conference_edit' c.pk %}">modifier</a>
         </td>
     </tr>
 {% endfor %}

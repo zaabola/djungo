@@ -22,3 +22,9 @@ class ConferenceCreate(CreateView):
     template_name ="conference/conference_form.html"
     fields ="__all__"
     success_url = reverse_lazy("conference_liste")
+
+class ConferenceUpdate(CreateView):
+    model=Conference
+    template_name ="conference/conference_form.html"
+    fields ="__all__"
+    success_url = reverse_lazy("conference_liste")
