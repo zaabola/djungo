@@ -1,18 +1,165 @@
-<h2>la liste des conferences</h2>
-<table border="1">
-    <tr>
-        <td>title </td>
-        <td>localisation </td>
-        <td>Actions</td>
-    </tr>
-{% for c in liste  %}
-    <tr>
-        <td>{{c.name}}</td>
-        <td>{{c.localisation}}</td>
-        <td>
-            <a href="{%  url 'conference_detail' c.pk %}">détails</a> <br>
-            <a href="{%  url 'conference_edit' c.pk %}">modifier</a>
-        </td>
-    </tr>
-{% endfor %}
-</table>
+<style>
+    .conference-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    .page-title {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 30px;
+        font-size: 2em;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 10px;
+    }
+
+    .conference-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .conference-table thead {
+        background: #34495e;
+        color: white;
+    }
+
+    .conference-table th {
+        padding: 15px;
+        text-align: left;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .conference-table td {
+        padding: 15px;
+        border-bottom: 1px solid #ecf0f1;
+    }
+
+    .conference-table tr:nth-child(even) {
+        background: #f8f9fa;
+    }
+
+    .conference-table tr:hover {
+        background: #e8f4fc;
+        transition: background 0.3s;
+    }
+
+    .action-links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 14px;
+        transition: all 0.3s;
+        display: inline-block;
+    }
+
+    .btn-details {
+        background: #3498db;
+        color: white;
+    }
+
+    .btn-details:hover {
+        background: #2980b9;
+    }
+
+    .btn-edit {
+        background: #f39c12;
+        color: white;
+    }
+
+    .btn-edit:hover {
+        background: #e67e22;
+    }
+
+    .btn-delete {
+        background: #e74c3c;
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background: #c0392b;
+    }
+
+    .add-btn {
+        background: #27ae60;
+        color: white;
+        padding: 12px 25px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background 0.3s;
+        display: inline-block;
+    }
+
+    .add-btn:hover {
+        background: #219a52;
+    }
+
+    .btn-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .no-conferences {
+        text-align: center;
+        color: #7f8c8d;
+        font-style: italic;
+        padding: 40px;
+        background: #f8f9fa;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="conference-container">
+    <h1 class="page-title">La liste des conférences</h1>
+    
+    {% if liste %}
+    <table class="conference-table">
+        <thead>
+            <tr>
+                <th>Nom de la conférence</th>
+                <th>Localisation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in liste %}
+            <tr>
+                <td><strong>{{ c.name }}</strong></td>
+                <td>{{ c.localisation }}</td>
+                <td>
+                    <div class="action-links">
+                        <a href="{% url 'conference_detail' c.pk %}" class="btn btn-details">Détails</a>
+                        <a href="{% url 'conference_edit' c.pk %}" class="btn btn-edit">Modifier</a>
+                        <a href="{% url 'conference_delete' c.pk %}" 
+                           class="btn btn-delete" 
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer {{ c.name }}?')">Supprimer</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="no-conferences">
+        <p>Aucune conférence disponible pour le moment.</p>
+    </div>
+    {% endif %}
+    
+    <div class="btn-container">
+        <a href="{% url 'conference_add' %}" class="add-btn">Ajouter une nouvelle conférence</a>
+    </div>
+</div>
