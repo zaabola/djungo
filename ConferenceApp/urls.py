@@ -7,4 +7,9 @@ urlpatterns = [
     path("form/", ConferenceCreate.as_view(), name="conference_add"),
     path("<int:pk>/edit/", ConferenceUpdate.as_view(), name="conference_edit"),
     path("<int:pk>/delete/", ConferenceDelete.as_view(), name="conference_delete"),
+    path("submissions/", SubmissionList.as_view(), name="submission_list"),
+    path("submissions/details/<str:pk>/", SubmissionDetails.as_view(), name="submission_detail"),
+    path("submissions/create/", SubmissionCreate.as_view(), name="submission_create"),
+    path("submissions/<str:pk>/edit/", SubmissionUpdate.as_view(), name="submission_edit"),
+    path("submissions/<str:pk>/delete/", SubmissionDelete.as_view(), name="submission_delete"),
 ]

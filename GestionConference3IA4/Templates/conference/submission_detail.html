@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Détails de la Soumission</title>
+    <style>
+        .submission-detail {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .detail-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+        }
+
+        .card-header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            width: 200px;
+            color: #2c3e50;
+        }
+
+        .detail-value {
+            flex: 1;
+            color: #34495e;
+        }
+
+        .back-btn {
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #7f8c8d;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-edit {
+            background: #f39c12;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #e67e22;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+
+        .status-submitted { color: #f39c12; }
+        .status-under-review { color: #3498db; }
+        .status-accepted { color: #27ae60; }
+        .status-rejected { color: #e74c3c; }
+    </style>
+</head>
+<body>
+    <div class="submission-detail">
+        <div class="detail-card">
+            <div class="card-header">
+                <h1>{{ submission.title }}</h1>
+            </div>
+            <div class="card-body">
+                <div class="detail-row">
+                    <div class="detail-label">ID Soumission:</div>
+                    <div class="detail-value">{{ submission.submission_id }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Conférence:</div>
+                    <div class="detail-value">{{ submission.conference.name }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Auteur:</div>
+                    <div class="detail-value">{{ submission.user.username }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Titre:</div>
+                    <div class="detail-value">{{ submission.title }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Résumé:</div>
+                    <div class="detail-value">{{ submission.abstract }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Mots-clés:</div>
+                    <div class="detail-value">{{ submission.keywords }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Statut:</div>
+                    <div class="detail-value status-{{ submission.status|slugify }}">{{ submission.get_status_display }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Payé:</div>
+                    <div class="detail-value">{% if submission.payed %}✅ Oui{% else %}❌ Non{% endif %}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Fichier:</div>
+                    <div class="detail-value">
+                        {% if submission.paper %}
+                            <a href="{{ submission.paper.url }}" target="_blank">📄 Télécharger le papier</a>
+                        {% else %}
+                            Aucun fichier
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Date de soumission:</div>
+                    <div class="detail-value">{{ submission.submission_date }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Créé le:</div>
+                    <div class="detail-value">{{ submission.created_at }}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Modifié le:</div>
+                    <div class="detail-value">{{ submission.updated_at }}</div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="{% url 'submission_edit' submission.pk %}" class="btn btn-edit">✏️ Modifier</a>
+                    <a href="{% url 'submission_delete' submission.pk %}" 
+                       class="btn btn-delete" 
+                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer {{ submission.title }}?')">🗑️ Supprimer</a>
+                </div>
+                
+                <a href="{% url 'submission_list' %}" class="back-btn">← Retour à la liste des soumissions</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
