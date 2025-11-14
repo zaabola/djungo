@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'UserApp',
     'ConferenceApp',
     'SessionApp',
+    'SessionAppApi',
 ]
 
 MIDDLEWARE = [
@@ -127,4 +129,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL="UserApp.User"
 LOGIN_REDIRECT_URL="conference_liste"
 LOGOUT_REDIRECT_URL="login"
-LOGIN_URL="login"
+LOGIN_URL="login"  

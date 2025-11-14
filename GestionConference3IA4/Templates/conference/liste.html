@@ -122,6 +122,14 @@
         border-radius: 10px;
     }
 </style>
+<div style="text-align: center; margin-bottom: 20px; padding: 10px; background: #f8f9fa; border-radius: 5px;">
+    Connecté en tant que: <strong>{{ user.username }}</strong>
+    {% if user.role == "commitee" %}
+        <span style="color: #e74c3c;">(Comité d'Organisation)</span>
+    {% else %}
+        <span style="color: #3498db;">(Participant)</span>
+    {% endif %}
+</div>
 
 <div class="conference-container">
     <h1 class="page-title">La liste des conférences</h1>
@@ -143,7 +151,7 @@
                 <td>
                     <div class="action-links">
                         <a href="{% url 'conference_detail' c.pk %}" class="btn btn-details">Détails</a>
-                        {% if user.is_authenticated and user.role == "Participant" %}
+                        {% if user.is_authenticated and user.role == "commitee" %}
                         <a href="{% url 'conference_edit' c.pk %}" class="btn btn-edit">Modifier</a>
                         <a href="{% url 'conference_delete' c.pk %}" 
                            class="btn btn-delete" 
@@ -162,9 +170,9 @@
     {% endif %}
     
     <div class="btn-container">
-        {% if user.is_authenticated and user.role == "Participant" %}
+        {% if user.is_authenticated and user.role == "commitee" %}
         <a href="{% url 'conference_add' %}" class="add-btn">Ajouter une nouvelle conférence</a>
-        <a href="{% url 'logout' %}" class="btn btn-delete">Déconnexion</a>
         {% endif %}
+        <a href="{% url 'logout' %}" class="btn btn-delete">Déconnexion</a>
     </div>
 </div>

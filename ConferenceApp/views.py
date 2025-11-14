@@ -48,24 +48,24 @@ class SubmissionList(ListView):
     ordering = ["submission_date"]
     template_name = "conference/submission_list.html"
 
-class SubmissionDetails(DetailView):
+class SubmissionDetails(DetailView , LoginRequiredMixin):
     model = Submission
     template_name = "conference/submission_detail.html"
     context_object_name = "submission"
 
-class SubmissionCreate(CreateView):
+class SubmissionCreate(CreateView , LoginRequiredMixin):
     model = Submission
     template_name = "conference/submission_form.html"
     fields = "__all__"
     success_url = reverse_lazy("submission_list")
 
-class SubmissionUpdate(UpdateView):
+class SubmissionUpdate(UpdateView , LoginRequiredMixin):
     model = Submission
     template_name = "conference/submission_form.html"
     fields = "__all__"
     success_url = reverse_lazy("submission_list")
 
-class SubmissionDelete(DeleteView):
+class SubmissionDelete(DeleteView , LoginRequiredMixin):
     model = Submission
     success_url = reverse_lazy("submission_list")
     

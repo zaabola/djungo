@@ -133,6 +133,14 @@
     </style>
 </head>
 <body>
+    <div style="text-align: center; margin-bottom: 20px; padding: 10px; background: #f8f9fa; border-radius: 5px;">
+    Connecté en tant que: <strong>{{ user.username }}</strong>
+    {% if user.role == "commitee" %}
+        <span style="color: #e74c3c;">(Comité d'Organisation)</span>
+    {% else %}
+        <span style="color: #3498db;">(Participant)</span>
+    {% endif %}
+</div>
     <div class="submission-container">
         <h1 class="page-title">Liste des Soumissions</h1>
         
@@ -169,7 +177,7 @@
                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer {{ submission.title }}?')">Supprimer</a>
                         </div>
                     </td>
-                </tr>
+                </tr>   
                 {% endfor %}
             </tbody>
         </table>
