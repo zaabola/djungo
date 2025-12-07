@@ -1,0 +1,49 @@
+{
+  "flights": [
+    {
+      "flight_number": "AF1234",
+      "airline": "Air France",
+      "departure_city": "Paris",
+      "arrival_city": "New York",
+      "departure_time": "10:30",
+      "arrival_time": "13:45",
+      "status": "On Time"
+    },
+    {
+      "flight_number": "LH567",
+      "airline": "Lufthansa",
+      "departure_city": "Berlin",
+      "arrival_city": "London",
+      "departure_time": "14:00",
+      "arrival_time": "15:30",
+      "status": "Delayed"
+    },
+    {
+      "flight_number": "BA890",
+      "airline": "British Airways",
+      "departure_city": "London",
+      "arrival_city": "Paris",
+      "departure_time": "09:00",
+      "arrival_time": "10:30",
+      "status": "On Time"
+    },
+    {
+      "flight_number": "KL123",
+      "airline": "KLM",
+      "departure_city": "Amsterdam",
+      "arrival_city": "New York",
+      "departure_time": "16:45",
+      "arrival_time": "20:00",
+      "status": "Cancelled"
+    },
+    {
+      "flight_number": "IB456",
+      "airline": "Iberia",
+      "departure_city": "Madrid",
+      "arrival_city": "Barcelona",
+      "departure_time": "11:15",
+      "arrival_time": "12:45",
+      "status": "On Time"
+    }
+  ]
+}

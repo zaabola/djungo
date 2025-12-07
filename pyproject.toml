@@ -1,0 +1,12 @@
+[project]
+name = "mcp-project"
+version = "0.1.0"
+description = "MCP Server Project"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.23.1",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
